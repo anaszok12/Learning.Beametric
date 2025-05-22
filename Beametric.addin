@@ -1,0 +1,15 @@
+﻿<RevitAddIns>
+	<ManifestSettings>
+		<UseRevitContext>False</UseRevitContext>
+		<ContextName>RevitAddIn</ContextName>
+	</ManifestSettings>
+	<AddIn Type="Application">
+		<Name>Beametric</Name>
+		<Assembly>Beametric/Beametric.dll</Assembly>
+		<AddInId>CCC7E870-F925-4B13-A25E-6830DAD8B8CC</AddInId>
+		<FullClassName>Beametric.Application</FullClassName>
+		<VendorId>Anas Z</VendorId>
+		<VendorDescription></VendorDescription>
+		<VendorEmail></VendorEmail>
+	</AddIn>
+</RevitAddIns>
