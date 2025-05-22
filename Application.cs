@@ -8,9 +8,6 @@ using System.Reflection;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using System.Windows.Media.Imaging;
-#if REVIT2024_OR_GREATER
-using Autodesk.Revit.UI.Events;
-#endif
 
 namespace Beametric
 {
@@ -45,49 +42,13 @@ namespace Beametric
 
             pushButton = ribbonPanel.AddItem(b1Data) as PushButton;
             pushButton.ToolTip = "Select a dimension to move the joint text";
-
-#if REVIT2024_OR_GREATER
-            updateImageByTheme();
-            application.ThemeChanged += ThemeChanged;
-#else
             BitmapImage pb1Imange = new(new Uri("pack://application:,,,/Beametric;component/Resources/Icons/MoveDimText32-Light.png"));
             pushButton.LargeImage = pb1Imange;
-#endif
         }
-
-#if REVIT2024_OR_GREATER
-        private void setButtonLargeImage(string largePicName)
-        {
-            string largeImageUri = $"pack://application:,,,/Beametric;component/Resources/Icons/{largePicName}";
-            pushButton.LargeImage = new System.Windows.Media.Imaging.BitmapImage(new Uri(largeImageUri));
-        }
-
-        private void updateImageByTheme()
-        {
-            UITheme theme = UIThemeManager.CurrentTheme;
-            switch (theme)
-            {
-                case UITheme.Dark:
-                    setButtonLargeImage("MoveDimText32-Dark.png");
-                    break;
-                case UITheme.Light:
-                    setButtonLargeImage("MoveDimText32-Light.png");
-                    break;
-            }
-        }
-
-        private void ThemeChanged(object sender, ThemeChangedEventArgs e)
-        {
-            updateImageByTheme();
-        }
-#endif
 
         public Result OnShutdown(UIControlledApplication application)
         {
             // do nothing
-#if REVIT2024_OR_GREATER
-            application.ThemeChanged -= ThemeChanged;
-#endif
             return Result.Succeeded;
         }
 
